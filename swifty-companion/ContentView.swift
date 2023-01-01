@@ -8,19 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
+	@Binding var token: String
+	
+	init(token: Binding<String>) {
+		self._token = token
+	}
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+			SearchBar(token: $token)
         }
         .padding()
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+ //   static var previews: some View {
+   //     ContentView()
+    //}
+//}

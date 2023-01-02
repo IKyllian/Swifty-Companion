@@ -35,9 +35,9 @@ struct SearchBar: View {
 
 			do {
 				let response = try JSONDecoder().decode(UserType.self, from: data)
-				print("Response \(response)")
-				self.hasData = true
+				//print("Response \(response)")
 				self.userDatas = response
+				self.hasData = true
 			}
 			catch {
 				print("Error \(error)")
@@ -61,8 +61,8 @@ struct SearchBar: View {
 				.navigationTitle("Search 42 Student")
 			}
 			.navigationDestination(isPresented: $hasData) {
-//				ProfilePage(userDatas: $userDatas)
-				ProfilePage()
+				ProfilePage(userDatas: $userDatas)
+//				ProfilePage()
 			}
 		}
 	}

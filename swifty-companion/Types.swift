@@ -16,7 +16,7 @@ struct ImageVersions: Codable {
 
 struct ImageType: Codable {
 	var link: String
-	var versions: ImageVersions
+	//var versions: ImageVersions
 }
 
 struct ProjectInfo: Codable {
@@ -24,10 +24,12 @@ struct ProjectInfo: Codable {
 }
 
 struct Project: Codable {
+	var id: Double
 	var created_at: String
 	var final_mark: Int?
 	var project: ProjectInfo
 	var status: String
+	var validated: Int?
 }
 
 struct Skill: Codable {
@@ -49,6 +51,7 @@ struct User: Codable {
 struct Cursus: Codable {
 	var user: User
 	var level: Float
+	var grade: String?
 	var skills: [Skill]
 	
 }

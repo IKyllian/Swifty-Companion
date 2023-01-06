@@ -30,84 +30,60 @@ struct CircleImage: View {
 	}
 }
 
-struct ProjectsView: View {
-	var projects: [Project]
-	
-	init(userProjects: [Project]) {
-		self.projects = userProjects
-	}
-	
-	var body: some View {
-		VStack() {
-			Text("Projects")
-			ScrollView {
-				VStack() {
-					ForEach(0..<projects.count, id: \.self) { index in
-						HStack {
-							Text(projects[index].project.name)
-							Spacer()
-								.padding()
-							if (projects[index].status == "finished") {
-								Text(String(projects[index].final_mark ?? 0))
-								Image(systemName: "checkmark.circle")
-									.foregroundColor(.green)
-							} else if (projects[index].status == "in_progress") {
-								Text("In Progress")
-							} else {
-								Image(systemName: "xmark.circle.fill")
-									.foregroundColor(.red)
-							}
-						}
-						if (index < projects.count - 1) {
-							Divider()
-						}
-					}
-				}.frame(maxWidth: .infinity)
-			}
-			.padding()
-		}
-	}
-}
-
-struct SkillsView: View {
-	var skills: [Skill]
-	
-	init(userSkills: [Skill]) {
-		self.skills = userSkills
-	}
-	
-	var body: some View {
-		VStack() {
-			Text("Skills")
-			ScrollView {
-				VStack() {
-					ForEach(0..<skills.count, id: \.self) { index in
-						ProgressView(value: skills[index].level, total: 20) {
-							HStack() {
-								Text(skills[index].name)
-								Spacer()
-								Text(String(skills[index].level))
-							}
-						}
-						if (index < skills.count - 1) {
-							Divider()
-						}
-					}
-				}.frame(maxWidth: .infinity)
-			}
-			.padding()
-		}
-	}
-}
-
 struct ProfilePage: View {
+	@State private var selection = "Piscine"
+	@State private var cursusId: Int = 0
+	@State private var cursus = ["Piscine"]
 	@Binding var userDatas: UserType?
-	var cursusId: Int = 0
 	
 	init(userDatas: Binding<UserType?>) {
 		self._userDatas = userDatas
+	}
+	
+	func initSelection() {
 		if (self.userDatas != nil) {
-			cursusId = self.userDatas!.cursus_users.count - 1
+			for userCursus in self.userDatas!.cursus_users {
+				if (userCursus.grade == "Learner") {
+					if (!self.cursus.contains("42cursus")) {
+						self.cursus.append("42cursus")
+					}
+				} else if (userCursus.grade == "Member") {
+					if (!self.cursus.contains("42cursus")) {
+						self.cursus.append("42cursus")
+					}
+				} else if (userCursus.grade == "Commander") {
+					if (!self.cursus.contains("42")) {
+						self.cursus.append("42")
+					}
+				}
+			}
+			
+			self.cursusId = self.userDatas!.cursus_users.count - 1
+			
+			if (self.userDatas!.cursus_users[self.cursusId].grade == "Learner" || self.userDatas!.cursus_users[self.cursusId].grade == "Member") {
+				self.selection = "42cursus"
+			} else if (self.userDatas!.cursus_users[self.cursusId].grade == "Commander") {
+				self.selection = "42"
+			}
+		}
+	}
+	
+	func searchNewIndex(pickerValue: String) {
+		var count: Int = 0
+		if (self.userDatas != nil) {
+			for userCursus in self.userDatas!.cursus_users {
+				if (pickerValue == "42cursus" && userCursus.grade == "Learner" || userCursus.grade == "Member") {
+					self.cursusId = count
+					break
+				} else if (pickerValue == "42" && userCursus.grade == "Commander") {
+					self.cursusId = count
+					break
+				} else if (pickerValue == "Piscine" && userCursus.grade == nil) {
+					self.cursusId = count
+					break
+				}
+				count += 1
+			}
 		}
 	}
 	
@@ -115,29 +91,41 @@ struct ProfilePage: View {
 		VStack() {
 			VStack() {
 				HStack() {
-					CircleImage(userImage: userDatas!.cursus_users[cursusId].user.image.link)
+					VStack() {
+						CircleImage(userImage: userDatas!.cursus_users[cursusId].user.image.link)
+						Picker("Select a cursus", selection: $selection) {
+							ForEach(cursus, id: \.self) {
+								Text($0)
+							}
+						}
+						.onAppear(perform: initSelection)
+						.onChange(of: selection) { newValue in
+							searchNewIndex(pickerValue: newValue)
+						}
+					}
 					Spacer()
 					VStack(alignment: .leading) {
-						Text("\(userDatas!.cursus_users[cursusId].user.displayname) (\(userDatas!.cursus_users[cursusId].user.login))")
+						Text("\(userDatas!.cursus_users[cursusId].user.displayname)")
 							.font(.title3)
+							.fontWeight(.medium)
+						Text("(\(userDatas!.cursus_users[cursusId].user.login))")
+							.font(.subheadline)
 							.fontWeight(.medium)
 						Text(userDatas!.cursus_users[cursusId].user.email)
 							.font(.footnote)
 							.fontWeight(.light)
 						Spacer()
 							.frame(height: 10.0)
-						if (userDatas!.cursus_users[cursusId].grade != nil) {
-							Text("Grade: \(userDatas!.cursus_users[cursusId].grade!)")
-								.font(.subheadline)
-						}
+						Text("Grade: \(userDatas!.cursus_users[cursusId].grade ?? "Novice")")
+							.font(.subheadline)
 						Text("Evaluation points: \(String(userDatas!.cursus_users[cursusId].user.correction_point))")
 							.font(.subheadline)
 						Text("Wallet: \(String(userDatas!.cursus_users[cursusId].user.wallet))")
 							.font(.subheadline)
 					}
 				}
-				ProgressView(value: /*@START_MENU_TOKEN@*/0.5/*@END_MENU_TOKEN@*/) {
-					Text("Level 8.66")
+				ProgressView(value: userDatas!.cursus_users[cursusId].level.truncatingRemainder(dividingBy: 1)) {
+					Text("Level \(String(format: "%.2f", userDatas!.cursus_users[cursusId].level))")
 				}
 			}
 			.padding([.leading, .bottom, .trailing])
@@ -148,9 +136,3 @@ struct ProfilePage: View {
 		//.background(Color(hue: 1.0, saturation: 0.0, brightness: 0.823))
     }
 }
-
-//struct ProfilePage_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ProfilePage()
-//    }
-//}

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		633001A429686C6A002444C8 /* ProjectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633001A329686C6A002444C8 /* ProjectsView.swift */; };
+		633001A629686C7C002444C8 /* SkillsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633001A529686C7C002444C8 /* SkillsView.swift */; };
 		63CAEFB82945EE1000D9EFAB /* swifty_companionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CAEFB72945EE1000D9EFAB /* swifty_companionApp.swift */; };
 		63CAEFBA2945EE1000D9EFAB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CAEFB92945EE1000D9EFAB /* ContentView.swift */; };
 		63CAEFBC2945EE1200D9EFAB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63CAEFBB2945EE1200D9EFAB /* Assets.xcassets */; };
@@ -37,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		633001A329686C6A002444C8 /* ProjectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsView.swift; sourceTree = "<group>"; };
+		633001A529686C7C002444C8 /* SkillsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillsView.swift; sourceTree = "<group>"; };
 		63CAEFB42945EE1000D9EFAB /* swifty-companion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "swifty-companion.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		63CAEFB72945EE1000D9EFAB /* swifty_companionApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swifty_companionApp.swift; sourceTree = "<group>"; };
 		63CAEFB92945EE1000D9EFAB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -107,6 +111,8 @@
 				63CAEFBB2945EE1200D9EFAB /* Assets.xcassets */,
 				63CAEFBD2945EE1200D9EFAB /* Preview Content */,
 				63DC385D29619FCB007DEA5D /* Types.swift */,
+				633001A329686C6A002444C8 /* ProjectsView.swift */,
+				633001A529686C7C002444C8 /* SkillsView.swift */,
 			);
 			path = "swifty-companion";
 			sourceTree = "<group>";
@@ -266,6 +272,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				633001A629686C7C002444C8 /* SkillsView.swift in Sources */,
+				633001A429686C6A002444C8 /* ProjectsView.swift in Sources */,
 				63CAEFBA2945EE1000D9EFAB /* ContentView.swift in Sources */,
 				63CAEFB82945EE1000D9EFAB /* swifty_companionApp.swift in Sources */,
 				63CAEFE52945FD8300D9EFAB /* ProfilePage.swift in Sources */,

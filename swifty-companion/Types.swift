@@ -29,7 +29,7 @@ struct Project: Codable {
 	var final_mark: Int?
 	var project: ProjectInfo
 	var status: String
-	var validated: Int?
+	var validated: Bool?
 }
 
 struct Skill: Codable {
@@ -45,7 +45,7 @@ struct User: Codable {
 	var correction_point: Int
 	var wallet: Int
 	var image: ImageType
-	
+	var kind: String
 }
 
 struct Cursus: Codable {

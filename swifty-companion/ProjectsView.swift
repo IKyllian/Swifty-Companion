@@ -24,16 +24,21 @@ struct ProjectsView: View {
 							Text(projects[index].project.name)
 							Spacer()
 								.padding()
-							if (projects[index].status == "finished") {
-								Text(String(projects[index].final_mark ?? 0))
-								Image(systemName: "checkmark.circle")
-									.foregroundColor(.green)
-							} else if (projects[index].status == "in_progress") {
+							if (projects[index].status == "in_progress") {
 								Text("In Progress")
+									.font(.subheadline)
+							} else if (projects[index].status == "waiting_for_correction") {
+								Text("Waiting For Correction")
+									.font(.subheadline)
 							} else {
-								Image(systemName: "xmark.circle.fill")
-									.foregroundColor(.red)
-							}
+								Text(String(projects[index].final_mark ?? 0))
+								if (projects[index].validated == true ) {
+									Image(systemName: "checkmark.circle")
+										.foregroundColor(.green)
+								} else {
+									Image(systemName: "xmark.circle.fill")
+										.foregroundColor(.red)
+								}							}
 						}
 						if (index < projects.count - 1) {
 							Divider()

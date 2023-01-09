@@ -75,7 +75,7 @@
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "API42_CLIENT_SECRET"
-            value = "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"
+            value = "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"
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable

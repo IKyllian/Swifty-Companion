@@ -104,6 +104,7 @@ struct ProfilePage: View {
 						}
 					}
 					Spacer()
+						.frame(width: 50)
 					VStack(alignment: .leading) {
 						Text("\(userDatas!.cursus_users[cursusId].user.displayname)")
 							.font(.title3)
@@ -114,7 +115,6 @@ struct ProfilePage: View {
 						Text(userDatas!.cursus_users[cursusId].user.email)
 							.font(.footnote)
 							.fontWeight(.light)
-						Spacer()
 							.frame(height: 10.0)
 						Text("Grade: \(userDatas!.cursus_users[cursusId].grade ?? "Novice")")
 							.font(.subheadline)
@@ -124,15 +124,19 @@ struct ProfilePage: View {
 							.font(.subheadline)
 					}
 				}
+				.frame(maxWidth: .infinity)
 				ProgressView(value: userDatas!.cursus_users[cursusId].level.truncatingRemainder(dividingBy: 1)) {
 					Text("Level \(String(format: "%.2f", userDatas!.cursus_users[cursusId].level))")
+						.multilineTextAlignment(.center)
+						.frame(maxWidth: .infinity)
 				}
+				.padding(.bottom)
 			}
-			.padding([.leading, .bottom, .trailing])
-			//.background(Image("Image-Background"))
+			.frame(maxWidth: .infinity)
 			ProjectsView(userProjects: userDatas!.projects_users)
 			SkillsView(userSkills: userDatas!.cursus_users[cursusId].skills)
 		}
+//		.ignoresSafeArea()
 		//.background(Color(hue: 1.0, saturation: 0.0, brightness: 0.823))
     }
 }

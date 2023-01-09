@@ -1,16 +1,17 @@
 //
-//  SearchBar.swift
+//  Home.swift
 //  swifty-companion
 //
-//  Created by Kyllian on 11/12/2022.
+//  Created by Kyllian on 09/01/2023.
 //
 
 import SwiftUI
 
-struct SearchBar: View {
+struct Home: View {
 	@State private var searchText = ""
 	@State var userDatas: UserType?
 	@State var hasData: Bool = false
+	@State var hasError: Bool = false
 	@Binding var token: String
 
 	init(token: Binding<String>) {
@@ -19,6 +20,9 @@ struct SearchBar: View {
 	}
 
 	func handleSubmit() {
+		if (self.hasError == true) {
+			self.hasError = false
+		}
 		guard let myUrl = URL(string: "https://api.intra.42.fr/v2/users/\(self.searchText.lowercased())") else {
 			return
 		}
@@ -26,7 +30,7 @@ struct SearchBar: View {
 		var request = URLRequest(url: myUrl)
 		request.httpMethod = "GET"
 		request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-		request.setValue("Bearer \(self.token)", forHTTPHeaderField: "Authorization")		
+		request.setValue("Bearer \(self.token)", forHTTPHeaderField: "Authorization")
 
 		let task = URLSession.shared.dataTask(with: request) { data, _, error in
 			guard let data = data, error == nil else {
@@ -40,6 +44,7 @@ struct SearchBar: View {
 				self.hasData = true
 			}
 			catch {
+				self.hasError = true
 				print("Error \(error)")
 			}
 		}
@@ -49,6 +54,10 @@ struct SearchBar: View {
     var body: some View {
 		NavigationStack {
 			VStack() {
+				if (hasError == true) {
+					Text("User Not found")
+						.foregroundColor(.red)
+				}
 				HStack {
 					Image(systemName: "magnifyingglass")
 					TextField("Login...", text: $searchText)
@@ -65,12 +74,5 @@ struct SearchBar: View {
 //				ProfilePage()
 			}
 		}
-	}
+    }
 }
-
-
-//struct SearchBar_Previews: PreviewProvider {
-//    static var previews: some View {
-//		SearchBar()
-//    }
-//}

@@ -39,7 +39,7 @@ struct swifty_companionApp: App {
 				
 				do {
 					let response = try JSONDecoder().decode(ResponseToken.self, from: data)
-					print("Response \(response)")
+					//print("Response \(response)")
 					self.token = response.access_token
 					self.loading = false
 				}
@@ -69,7 +69,7 @@ struct swifty_companionApp: App {
 			}
 			
 			if !loading && !error {
-				ContentView(token: $token)
+				Home(token: $token)
 			}
         }
     }

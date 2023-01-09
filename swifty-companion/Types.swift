@@ -30,6 +30,15 @@ struct Project: Codable {
 	var project: ProjectInfo
 	var status: String
 	var validated: Bool?
+	
+	private enum CodingKeys : String, CodingKey {
+		case id
+		case created_at
+		case final_mark
+		case project
+		case status
+		case validated = "validated?"
+	}
 }
 
 struct Skill: Codable {

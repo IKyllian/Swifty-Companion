@@ -20,13 +20,11 @@ struct CircleImage: View {
 				.resizable()
 				.clipShape(Circle())
 				.aspectRatio(contentMode: .fill)
-				.overlay {
-					Circle().stroke(.white, lineWidth: 3)
-				}
 				.shadow(radius: 7)
 		} placeholder: {
 			ProgressView()
-		}.frame(width: 110, height: 110)
+		}
+		.frame(width: 180, height: 180)
 	}
 }
 
@@ -34,6 +32,7 @@ struct ProfilePage: View {
 	@State private var selection = "Piscine"
 	@State private var cursusId: Int = 0
 	@State private var cursus = ["Piscine"]
+	@State private var projectSelected: Bool = true
 	@Binding var userDatas: UserType?
 	
 	init(userDatas: Binding<UserType?>) {
@@ -87,56 +86,80 @@ struct ProfilePage: View {
 		}
 	}
 	
-    var body: some View {
-		VStack() {
+	var body: some View {
+		ZStack() {
+			backgroundGradient
+				.ignoresSafeArea()
 			VStack() {
-				HStack() {
-					VStack() {
-						CircleImage(userImage: userDatas!.cursus_users[cursusId].user.image.link)
-						Picker("Select a cursus", selection: $selection) {
-							ForEach(cursus, id: \.self) {
-								Text($0)
+				VStack() {
+					CircleImage(userImage: userDatas!.cursus_users[cursusId].user.image.link)
+					Text("\(userDatas!.cursus_users[cursusId].user.displayname)")
+						.font(.title3)
+						.fontWeight(.medium)
+					Text("(\(userDatas!.cursus_users[cursusId].user.login))")
+						.font(.subheadline)
+						.fontWeight(.medium)
+					Text(userDatas!.cursus_users[cursusId].user.email)
+						.font(.footnote)
+						.fontWeight(.light)
+						.padding(.vertical, 1)
+					HStack(alignment: .center, spacing: 40.0) {
+						VStack(alignment: .center) {
+							Text("\(String(userDatas!.cursus_users[cursusId].user.wallet))")
+								.font(.headline)
+							Text("WALLET").foregroundColor(Color("Blue2")).font(.caption)
+						}
+						VStack(alignment: .center) {
+							if (userDatas!.campus.count > 0) {
+								Text("\(userDatas!.campus[0].name)")
+									.font(.headline)
+							} else {
+								Text("Null")
+									.font(.headline)
 							}
+							Text("CAMPUS").foregroundColor(Color("Blue2")).font(.caption)
 						}
-						.onAppear(perform: initSelection)
-						.onChange(of: selection) { newValue in
-							searchNewIndex(pickerValue: newValue)
+						VStack(alignment: .center) {
+							Text("\(userDatas!.cursus_users[cursusId].grade ?? "Novice")")
+								.font(.headline)
+							Text("GRADRE").foregroundColor(Color("Blue2")).font(.caption)
+						}
+						VStack(alignment: .center) {
+							Text("\(String(userDatas!.cursus_users[cursusId].user.correction_point))")
+								.font(.headline)
+							Text("CORR.PTS").foregroundColor(Color("Blue2")).font(.caption)
 						}
 					}
-					Spacer()
-						.frame(width: 50)
-					VStack(alignment: .leading) {
-						Text("\(userDatas!.cursus_users[cursusId].user.displayname)")
-							.font(.title3)
-							.fontWeight(.medium)
-						Text("(\(userDatas!.cursus_users[cursusId].user.login))")
-							.font(.subheadline)
-							.fontWeight(.medium)
-						Text(userDatas!.cursus_users[cursusId].user.email)
-							.font(.footnote)
-							.fontWeight(.light)
-							.frame(height: 10.0)
-						Text("Grade: \(userDatas!.cursus_users[cursusId].grade ?? "Novice")")
-							.font(.subheadline)
-						Text("Evaluation points: \(String(userDatas!.cursus_users[cursusId].user.correction_point))")
-							.font(.subheadline)
-						Text("Wallet: \(String(userDatas!.cursus_users[cursusId].user.wallet))")
-							.font(.subheadline)
+					.padding(.horizontal)
+					Picker("Select a cursus", selection: $selection) {
+						ForEach(cursus, id: \.self) {
+							Text($0)
+						}
 					}
+					.onAppear(perform: initSelection)
+					.onChange(of: selection) { newValue in
+						searchNewIndex(pickerValue: newValue)
+					}
+					ProgressView(value: userDatas!.cursus_users[cursusId].level.truncatingRemainder(dividingBy: 1)) {
+						Text("Level \(String(format: "%.2f", userDatas!.cursus_users[cursusId].level))")
+							.multilineTextAlignment(.center)
+							.frame(maxWidth: .infinity)
+					}
+					.padding(.horizontal)
 				}
-				.frame(maxWidth: .infinity)
-				ProgressView(value: userDatas!.cursus_users[cursusId].level.truncatingRemainder(dividingBy: 1)) {
-					Text("Level \(String(format: "%.2f", userDatas!.cursus_users[cursusId].level))")
-						.multilineTextAlignment(.center)
-						.frame(maxWidth: .infinity)
+				.frame(minWidth: 0, maxWidth: .infinity)
+				.foregroundColor(.white)
+				HStack(alignment: .center, spacing: 30.0) {
+					ProfileButton(projectSelected: $projectSelected, isProjectButton: true)
+					ProfileButton(projectSelected: $projectSelected, isProjectButton: false)
 				}
-				.padding(.bottom)
+				if (projectSelected) {
+					ProjectsView(userProjects: userDatas!.projects_users)
+				} else {
+					SkillsView(userSkills: userDatas!.cursus_users[cursusId].skills)
+				}
 			}
-			.frame(maxWidth: .infinity)
-			ProjectsView(userProjects: userDatas!.projects_users)
-			SkillsView(userSkills: userDatas!.cursus_users[cursusId].skills)
 		}
-//		.ignoresSafeArea()
-		//.background(Color(hue: 1.0, saturation: 0.0, brightness: 0.823))
-    }
+		.foregroundColor(.white)
+	}
 }

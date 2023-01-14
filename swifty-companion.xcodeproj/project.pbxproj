@@ -10,6 +10,7 @@
 		633001A429686C6A002444C8 /* ProjectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633001A329686C6A002444C8 /* ProjectsView.swift */; };
 		633001A629686C7C002444C8 /* SkillsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633001A529686C7C002444C8 /* SkillsView.swift */; };
 		633001A8296C7240002444C8 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633001A7296C7240002444C8 /* Home.swift */; };
+		63C6D7D92972D7A500FABF30 /* ProfileButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C6D7D82972D7A500FABF30 /* ProfileButton.swift */; };
 		63CAEFB82945EE1000D9EFAB /* swifty_companionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CAEFB72945EE1000D9EFAB /* swifty_companionApp.swift */; };
 		63CAEFBC2945EE1200D9EFAB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63CAEFBB2945EE1200D9EFAB /* Assets.xcassets */; };
 		63CAEFBF2945EE1200D9EFAB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63CAEFBE2945EE1200D9EFAB /* Preview Assets.xcassets */; };
@@ -41,6 +42,7 @@
 		633001A329686C6A002444C8 /* ProjectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsView.swift; sourceTree = "<group>"; };
 		633001A529686C7C002444C8 /* SkillsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillsView.swift; sourceTree = "<group>"; };
 		633001A7296C7240002444C8 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		63C6D7D82972D7A500FABF30 /* ProfileButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileButton.swift; sourceTree = "<group>"; };
 		63CAEFB42945EE1000D9EFAB /* swifty-companion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "swifty-companion.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		63CAEFB72945EE1000D9EFAB /* swifty_companionApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swifty_companionApp.swift; sourceTree = "<group>"; };
 		63CAEFBB2945EE1200D9EFAB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				63CAEFB72945EE1000D9EFAB /* swifty_companionApp.swift */,
 				633001A7296C7240002444C8 /* Home.swift */,
 				63CAEFE42945FD8300D9EFAB /* ProfilePage.swift */,
+				63C6D7D82972D7A500FABF30 /* ProfileButton.swift */,
 				63CAEFBB2945EE1200D9EFAB /* Assets.xcassets */,
 				63CAEFBD2945EE1200D9EFAB /* Preview Content */,
 				63DC385D29619FCB007DEA5D /* Types.swift */,
@@ -272,6 +275,7 @@
 				633001A629686C7C002444C8 /* SkillsView.swift in Sources */,
 				633001A429686C6A002444C8 /* ProjectsView.swift in Sources */,
 				63CAEFB82945EE1000D9EFAB /* swifty_companionApp.swift in Sources */,
+				63C6D7D92972D7A500FABF30 /* ProfileButton.swift in Sources */,
 				63CAEFE52945FD8300D9EFAB /* ProfilePage.swift in Sources */,
 				63DC385E29619FCB007DEA5D /* Types.swift in Sources */,
 				633001A8296C7240002444C8 /* Home.swift in Sources */,
@@ -433,6 +437,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"swifty-companion/Preview Content\"";
+				DEVELOPMENT_TEAM = XBT8SY2UC9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -461,6 +466,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"swifty-companion/Preview Content\"";
+				DEVELOPMENT_TEAM = XBT8SY2UC9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

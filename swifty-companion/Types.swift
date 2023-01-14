@@ -19,6 +19,11 @@ struct ImageType: Codable {
 	//var versions: ImageVersions
 }
 
+struct Campus: Codable {
+	var id: Int
+	var name: String
+}
+
 struct ProjectInfo: Codable {
 	var name: String
 }
@@ -68,6 +73,7 @@ struct Cursus: Codable {
 struct UserType: Codable {
 	var cursus_users: [Cursus]
 	var projects_users: [Project]
+	var campus: [Campus]
 }
 
 struct ResponseToken: Codable {

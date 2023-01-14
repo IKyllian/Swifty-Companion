@@ -7,6 +7,11 @@
 
 import SwiftUI
 
+let backgroundGradient = LinearGradient(
+	colors: [Color("Blue"), Color("Color"), Color("Blue2")],
+	startPoint: .top, endPoint: .bottom
+)
+
 struct Home: View {
 	@State private var searchText = ""
 	@State var userDatas: UserType?
@@ -39,7 +44,7 @@ struct Home: View {
 
 			do {
 				let response = try JSONDecoder().decode(UserType.self, from: data)
-				//print("Response \(response)")
+//				print("Response \(response)")
 				self.userDatas = response
 				self.hasData = true
 			}
@@ -50,28 +55,32 @@ struct Home: View {
 		}
 		task.resume()
 	}
-
+	
     var body: some View {
 		NavigationStack {
-			VStack() {
-				if (hasError == true) {
-					Text("User Not found")
-						.foregroundColor(.red)
+			ZStack() {
+				backgroundGradient
+					.ignoresSafeArea()
+				VStack() {
+					Text("Search 42 Student")
+						.font(.title)
+						.foregroundColor(.white)
+					if (hasError == true) {
+						Text("User Not found")
+							.foregroundColor(.red)
+					}
+					HStack {
+					    TextField("Login...", text: $searchText)
+						Button(/*@START_MENU_TOKEN@*/"Search"/*@END_MENU_TOKEN@*/, action: {
+							handleSubmit()
+						})
+					}
 				}
-				HStack {
-					Image(systemName: "magnifyingglass")
-					TextField("Login...", text: $searchText)
-					Button(/*@START_MENU_TOKEN@*/"Search"/*@END_MENU_TOKEN@*/, action: {
-						handleSubmit()
-					})
-				}
-				.textFieldStyle(RoundedBorderTextFieldStyle())
 				.padding()
-				.navigationTitle("Search 42 Student")
-			}
-			.navigationDestination(isPresented: $hasData) {
-				ProfilePage(userDatas: $userDatas)
-//				ProfilePage()
+				.textFieldStyle(RoundedBorderTextFieldStyle())
+				.navigationDestination(isPresented: $hasData) {
+					ProfilePage(userDatas: $userDatas)
+				}
 			}
 		}
     }

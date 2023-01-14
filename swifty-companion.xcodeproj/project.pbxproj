@@ -11,6 +11,8 @@
 		633001A629686C7C002444C8 /* SkillsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633001A529686C7C002444C8 /* SkillsView.swift */; };
 		633001A8296C7240002444C8 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633001A7296C7240002444C8 /* Home.swift */; };
 		63C6D7D92972D7A500FABF30 /* ProfileButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C6D7D82972D7A500FABF30 /* ProfileButton.swift */; };
+		63C6D7DD29730B8100FABF30 /* env.plist in Resources */ = {isa = PBXBuildFile; fileRef = 63C6D7DC29730B8100FABF30 /* env.plist */; };
+		63C6D7DF29730DAF00FABF30 /* env-Sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = 63C6D7DE29730DAF00FABF30 /* env-Sample.plist */; };
 		63CAEFB82945EE1000D9EFAB /* swifty_companionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CAEFB72945EE1000D9EFAB /* swifty_companionApp.swift */; };
 		63CAEFBC2945EE1200D9EFAB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63CAEFBB2945EE1200D9EFAB /* Assets.xcassets */; };
 		63CAEFBF2945EE1200D9EFAB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63CAEFBE2945EE1200D9EFAB /* Preview Assets.xcassets */; };
@@ -43,6 +45,8 @@
 		633001A529686C7C002444C8 /* SkillsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillsView.swift; sourceTree = "<group>"; };
 		633001A7296C7240002444C8 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		63C6D7D82972D7A500FABF30 /* ProfileButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileButton.swift; sourceTree = "<group>"; };
+		63C6D7DC29730B8100FABF30 /* env.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = env.plist; sourceTree = "<group>"; };
+		63C6D7DE29730DAF00FABF30 /* env-Sample.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "env-Sample.plist"; sourceTree = "<group>"; };
 		63CAEFB42945EE1000D9EFAB /* swifty-companion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "swifty-companion.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		63CAEFB72945EE1000D9EFAB /* swifty_companionApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swifty_companionApp.swift; sourceTree = "<group>"; };
 		63CAEFBB2945EE1200D9EFAB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -104,7 +108,9 @@
 		63CAEFB62945EE1000D9EFAB /* swifty-companion */ = {
 			isa = PBXGroup;
 			children = (
+				63C6D7DC29730B8100FABF30 /* env.plist */,
 				63CAEFB72945EE1000D9EFAB /* swifty_companionApp.swift */,
+				63C6D7DE29730DAF00FABF30 /* env-Sample.plist */,
 				633001A7296C7240002444C8 /* Home.swift */,
 				63CAEFE42945FD8300D9EFAB /* ProfilePage.swift */,
 				63C6D7D82972D7A500FABF30 /* ProfileButton.swift */,
@@ -248,6 +254,8 @@
 			files = (
 				63CAEFBF2945EE1200D9EFAB /* Preview Assets.xcassets in Resources */,
 				63CAEFBC2945EE1200D9EFAB /* Assets.xcassets in Resources */,
+				63C6D7DF29730DAF00FABF30 /* env-Sample.plist in Resources */,
+				63C6D7DD29730B8100FABF30 /* env.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

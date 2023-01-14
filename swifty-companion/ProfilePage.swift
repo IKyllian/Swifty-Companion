@@ -20,11 +20,11 @@ struct CircleImage: View {
 				.resizable()
 				.clipShape(Circle())
 				.aspectRatio(contentMode: .fill)
-				.shadow(radius: 7)
+				.shadow(color: Color("Blue2"), radius: 5)
 		} placeholder: {
 			ProgressView()
 		}
-		.frame(width: 180, height: 180)
+		.frame(width: 150, height: 150)
 	}
 }
 
@@ -153,6 +153,7 @@ struct ProfilePage: View {
 					ProfileButton(projectSelected: $projectSelected, isProjectButton: true)
 					ProfileButton(projectSelected: $projectSelected, isProjectButton: false)
 				}
+				.padding(.top, 4)
 				if (projectSelected) {
 					ProjectsView(userProjects: userDatas!.projects_users)
 				} else {
